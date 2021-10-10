@@ -26,6 +26,19 @@ ret=cv2.selectROI([win_name,]img[, showCrossHair=True, fromCenter=False])
 
 <br>
 
+**채널 분리, 병합**
+
+```pytho
+dst=cv2.split(m)
+dst=cv2.merge(mv)
+```
+
+분리할 영상(BGR, HSV, YCrCb)을 m에 전달하면 단일 채널 이미지 배열을 리턴(BGR 영상 전달시 B, G, R에 해당하는 배열을 리턴).
+
+병합하고자하는 단일 채널 이미지 배열을 mv에 전달해 결과 영상을 리턴.
+
+<br>
+
 **쓰레시홀드**
 
 ```python
@@ -141,4 +154,32 @@ dst=cv2.equalizeHist(src)
 값이 전체 분포에 차지하는 비중에 따라 분포를 재분배하여 명암비를 향상시킴.
 
 컬러 영상에 적용시 BGR보다는 YUV, YCrCb, HSV로 변환해 밝기 채널만 연산하는 것이 효과적.
+
+<br>
+
+**특정 색상 영역 추출**
+
+```pyth
+dst=cv2.inRange(src, lowerb, upperb)
+```
+
+특정 색상 영역을 추출하려면 BGR보다는 HSV가 좋음(H와 S로 색상을 조절해 추출하기 편하기 때문)
+
+lowerb에 하한 값 행렬이나 스칼라를 전달하고 upperb에 상한 값 행렬이나 스칼라를 전달.
+
+<br>
+
+**역투영**
+
+```pyth
+dst=cv2.calcBackProject(img, channel, hist, ranges, scale)
+```
+
+영상에서 지정한 색상 영역을 검출할 때 효과적으로 관심 영역의 H와 V값의 분포를 얻은 후 전체 영상에서 해당 분포의 픽셀을 찾아내는 것.
+
+입력 영상을 리스트로 감싸 img에 전달하며 1채널이면 [0], 2채널이면 [0, 1], 3채널이면 [0, 1, 2]로 channel에 전달.
+
+역투영에 사용할 히스토그램을 hist에 전달하며 픽셀의 최소값과 최대값을 리스트로 ranges에 전달.
+
+결과에 추가적으로 곱할 값을 scale에 전달.
 
