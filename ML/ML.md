@@ -14,13 +14,25 @@
 
 #### 신경망
 
+* 뉴런이나 노드로 구성된 인공 신경망을 의미
+
 * 가중치 매개변수를 자동으로 학습함.
 
 * 입력층 -> n개의 은닉층 -> 출력층.
 
 * 활성화 함수(activation function) : 입력 신호의 총합을 출력 신호로 변환하는 함수(비션형 함수).
-  * 시그모이드 함수(sigmoid funcion) : 1/(1+exp(-x)) -> 1/(1+np.exp(-x)), 회귀에 주로 사용.
+  * 시그모이드 함수(sigmoid funcion) : h(x) = 1/(1+exp(-x)) -> 1/(1+np.exp(-x)), 회귀에 주로 사용.
+  
+    ![sigmoid](C:\Users\hkcho\Desktop\폴더\자료\공부 자료\사진\sigmoid.png)
+  
+    <br>
+  
   * ReLU 함수(Rectified Linear Unit function) : h(x) = x(x>0), 0(x<=0)
+  
+    ![relu](C:\Users\hkcho\Desktop\폴더\자료\공부 자료\사진\relu.png)
+  
+    <br>
+  
   * 소프트맥스 함수(softmax function) : 입력 신호의 지수 함수/모든 입력 신호의 지수 함수의 합, 출력이 0~1.0 사이의 실수로 출력의 총합이 1 -> 문제를 확률적(통계적)으로 대응 가능해 분류에 주로 사용.
 
 <br><br>
