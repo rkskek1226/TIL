@@ -23,13 +23,13 @@
 * 활성화 함수(activation function) : 입력 신호의 총합을 출력 신호로 변환하는 함수(비션형 함수).
   * 시그모이드 함수(sigmoid funcion) : h(x) = 1/(1+exp(-x)) -> 1/(1+np.exp(-x)), 회귀에 주로 사용.
   
-    ![sigmoid](C:./image/sigmoid.png)
+    ![sigmoid](./image/sigmoid.png)
   
     <br>
   
   * ReLU 함수(Rectified Linear Unit function) : h(x) = x(x>0), 0(x<=0)
   
-    ![relu](C:./image/relu.png)
+    ![relu](./image/relu.png)
   
     <br>
   
