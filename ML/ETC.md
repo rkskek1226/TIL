@@ -12,7 +12,7 @@
 
 학습을 위해 많은 데이터가 필요하며 데이터가 많을수록 정확도가 올라감.
 
-
+<br>
 
 **머신러닝 학습 방법**
 
@@ -23,9 +23,56 @@
 
 <br>
 
+**선형 회귀(linear regression)**
+
+독립 변수 x를 사용해 종속 변수 y의 움직임을 예측하고 설명하는 작업. 
+
+임의의 직선을 그어 이에 대한 평균 제곱 오차(MSE)를 구하고 MSE를 가장 작게 만드는 a와 b를 찾아가는 작업.
+
+1개의 x로 y를 설명할 수 있을때 단순 선형 회귀(simple linear regression). 
+
+여러개의 x가 필요할때를 다중 선형 회귀(multiple linear regression).
+
+(x에 따라 y가 변할때 독립적으로 변할 수 있는 x를 독립 변수, 독립 변수에 따라 종속적으로 변하는 y를 종속 변수라 함).
+
+<br>
+
+**로지스트 회귀(logistic regression)**
+
+입력된 데이터의 특징을 추출해 참과 거짓을 판별하는 작업.
+
+<br>
+
 **TensorFlow**
 
 Data Flow Graph를 이용해 수치적 계산위한 오픈 소스 라이브러리  .
 
 Data Flow Graph : 노드(연산자)와 엣지(데이터)로 데이터를 표현한 것.
+
+<br>
+
+**Keras**
+
+Keras는 입력층을 따로 만들지 않음.
+
+Sequential() : 딥러닝 구조를 쌓아올릴수 있게함.
+
+add() : Sequential() 선언후 add()로 층을 추가함. 첫번째 은닉층에서 input_dim으로 입력 데이터로부터 몇개를 가져올지를 설정해 입력층+은닉층의 역할을 함.
+
+Dense() : 각 층의 특성을 설정.
+
+compile() : 모델을 컴파일하는 것.
+
+fit() : 모델을 실제로 수행하는 것.
+
+
+
+| 계열               | Keras에서 사용하는 손실 함수   | Keras에서 사용하는 손실 함수  |
+| :----------------- | :----------------------------- | ----------------------------- |
+| 평균 제곱 계열     | mean_squared_error             | 평균 제곱 오차                |
+| 평균 제곱 계열     | mean_absolute_error            | 평균 절대 오차                |
+| 평균 제곱 계열     | mean_absolute_percentage_error | 평균 절대 백분율 오차         |
+| 평균 제곱 계열     | mean_squared_logarithmic_error | 평균 제곱 로그 오차           |
+| 교차 엔트로피 계열 | categorical_crossentropy       | 범주형 교차 엔트로피(분류)    |
+| 교차 엔트로피 계열 | binary_crossentropy            | 이항 교차 엔트로피(이진 분류) |
 

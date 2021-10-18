@@ -84,5 +84,21 @@ dst=cv2.warpPerspective(src, mtrx, dsize[, dst, flags, borderMode, borderValue])
 
 cv2.warpAffine()과 매개변수가 동일하지만 cv2.warpPerspective()는 mtrx가 3x3 행렬임.
 
+<br>
+
+**리매핑**
+
+특정 위치 픽셀을 다른 위치로 재배치하여 어파인 변환, 원근 변환 등의 변환을 리매핑으로도 표현 가능.
+
+```python
+dst=cv2.remap(src, mapx, mapy, interpolation [, dst, borderMode, borderValue])
+```
+
+mapx와 mapy는 x축과 y축으로 이동할 좌표로 src와 크기가 같아야 하며 타입은 np.float32.
+
+mapx[0] [0]=10, mapy[0] [0]=5는 src의 (0, 0) 좌표를 (10, 5)로 옮기라는 의미. 
+
+나머지 인자는 cv2.warpAffine()과 동일.
+
 
 
