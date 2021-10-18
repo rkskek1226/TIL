@@ -37,9 +37,11 @@
 
 <br>
 
-**로지스트 회귀(logistic regression)**
+**로지스틱 회귀(logistic regression) == 분류**
 
 입력된 데이터의 특징을 추출해 참과 거짓을 판별하는 작업.
+
+이진 분류와 다중 분류로 구분.
 
 <br>
 
@@ -59,11 +61,25 @@ Sequential() : 딥러닝 구조를 쌓아올릴수 있게함.
 
 add() : Sequential() 선언후 add()로 층을 추가함. 첫번째 은닉층에서 input_dim으로 입력 데이터로부터 몇개를 가져올지를 설정해 입력층+은닉층의 역할을 함.
 
-Dense() : 각 층의 특성을 설정.
+Dense() : 각 층의 특성을 설정하며 add() 안에서 사용함.
 
-compile() : 모델을 컴파일하는 것.
+compile() : 모델을 컴파일하는 것으로 손실 함수, 최적화 방법, 메트릭을 지정.
 
-fit() : 모델을 실제로 수행하는 것.
+fit() : 모델을 실제로 수행하는 것으로 epoch와 batch_size를 지정.
+
+```python
+dataset=np.loadtxt("~~.csv",delimiter=",")
+X=dataset[범위 지정]
+Y=dataset[범위 지정]
+
+model=Sequential()
+model.add(Dense(12,input_dim=8,activation="relu")) # 입력층과 은닉층의 역할
+model.add(Dense(8,activation="relu")) # 은닉층
+model.add(Dense(1,activation="sigmoid")) # 출력층
+
+model.compile(loss="binary_crossentropy",optimizer="adam",metrics=["accuracy"])
+model.fit(X,Y,epochs=200,batch_size=10)
+```
 
 
 
@@ -76,3 +92,6 @@ fit() : 모델을 실제로 수행하는 것.
 | 교차 엔트로피 계열 | categorical_crossentropy       | 범주형 교차 엔트로피(분류)    |
 | 교차 엔트로피 계열 | binary_crossentropy            | 이항 교차 엔트로피(이진 분류) |
 
+<br>
+
+입력 데이터가 문자열일 경우 numpy보다는 pandas가 좋음
