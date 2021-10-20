@@ -27,3 +27,24 @@ anchor는 커널의 기준점으로 (-1, -1)이 디폴트로 커널의 중앙.
 delta는 추가할 값이며 borderType은 가장자리 픽셀 확장 방식을 의미.
 
 borderType(가장자리 픽셀 확장 방법) : BORDER_CONSTANT, BORDER_REPLICATE, BORDER_REFLECT, BORDER_REFLECT_101, BORDER_REFLECT101, BORDER_DEFAULT(=BORDER_REFLECT_101)가 있음.
+
+<br>
+
+**평균 블러링**
+
+블러링이란 영상을 흐릿하게 만드는 것으로 그레이스케일 값 변화가 줄어들어 영상이 부드러워지고 잡음이 사라짐(커널이 커질수록 연산량이 많아짐).
+
+영상의 좌표값을 주변 픽셀값들의 평균으로 적용하는 것.
+
+커널=nxn 크기로 값을 1로 채우고 n**2으로 나눈 행렬.
+
+만든 커널을 cv2.filter2D()의 kernel로 전달하면 됨.
+
+```python
+dst=cv2.blur(src, ksize[, dst, anchor, borderType])
+```
+
+커널을 만들고 cv2.filert2D()로 적용하는 방법도 있지만 cv2.blur()로 한번에 할 수도 있음.
+
+ksize는 커널의 크기로 (width, height) 형태의 튜플로 지정.
+
