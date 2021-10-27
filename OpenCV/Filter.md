@@ -48,3 +48,19 @@ dst=cv2.blur(src, ksize[, dst, anchor, borderType])
 
 ksize는 커널의 크기로 (width, height) 형태의 튜플로 지정.
 
+<br>
+
+**가우시안 블러링**
+
+가우시안 분포를 갖는 커널로 블러링을 함.
+
+가까이 있는 픽셀에는 큰 가중치를 설정하고 멀리 있는 픽셀에는 작은 가중치를 사용.
+
+```python
+dst=cv2.GaussianBlur(src, ksize, sigmaX, sigmaY, borderType)
+```
+
+ksize는 커널 크기로 (0, 0)을 지정하면 sigmaX에 의해 자동으로 결정됨(sigmaX에는 0 대입 불가).
+
+sigmaX, sigmaY는 X, Y 방향 표준편차 SigmaY 생략시 SigmaX와 같은 값 적용됨.
+
