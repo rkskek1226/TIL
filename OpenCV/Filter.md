@@ -64,3 +64,42 @@ ksize는 커널 크기로 (0, 0)을 지정하면 sigmaX에 의해 자동으로 �
 
 sigmaX, sigmaY는 X, Y 방향 표준편차 SigmaY 생략시 SigmaX와 같은 값 적용됨.
 
+<br>
+
+**미디언 블러링(median blurring)**
+
+커널의 픽셀값중 중간 값(median)으로 대상 픽셀값을 설정하는 것.
+
+소금-후추 잡음 제거에 효과적.
+
+```python
+dst=cv2.medianBlur(src, ksize)
+```
+
+ksize에 3을 입력시 3x3으로 설정됨.
+
+<br>
+**바이레터럴 필터(양방향 필터, bilateral filter)**
+
+가우시안 잡음 제거에 효과적.
+
+가우시안 잡음 제거에는 가우시안 블러링이 효과적이지만 원본 영상의 엣지 정보의 날카로움이 사라질 수 있음 -> 바이레터럴 필터를 사용해서 해결.
+
+가우시안 블러링은 영상 전체를 블러링해 빠르지만 바이레터럴 필터는 엣지가 아닌 부분만 블러링하므로 느림.
+
+```python
+dst=cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace[, dst, borderType])
+```
+
+d는 필터의 직경으로 -1 입력시 sigmaSpace에 의해 자동으로 결정됨.
+
+sigmaColor는 색 공간에서 필터의 표준 편차.
+
+sigmaSpace는 좌표 공간에서의 필터의 표준 편차.
+
+<br>
+
+**샤프닝(Sharpening)**
+
+부드러워진 영상을 날카로운 영상으로 생성.
+
