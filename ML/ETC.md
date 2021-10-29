@@ -106,3 +106,17 @@ X_train, X_test, Y_train, Y_test=train_test_split(X, Y, test_size=0.3, random_st
 ```
 
 입력 데이터 X와 결과 데이터 Y에서 학습셋 70%, 테스트셋 30%로 구분하는 함수. 
+
+<br>
+
+**K겹 교차 방법(k-fold corss validation)**
+
+데이터셋이 작을 경우 데이터셋을 여러개로 나누어 하나씩 테스트셋으로 사용하고 나머지를 학습셋으로 사용하는 방법.
+
+```python
+from sklearn.model_selection import StratifiedKFold
+n_fold=10   # 10개의 셋으로 나눔
+skf=StratifiedKFold(n_splits=n_fold, shuffle=True, random_state=seed)
+```
+
+ 
