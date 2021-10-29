@@ -101,5 +101,33 @@ sigmaSpace는 좌표 공간에서의 필터의 표준 편차.
 
 **샤프닝(Sharpening)**
 
-부드러워진 영상을 날카로운 영상으로 생성.
+영상의 경계(edge, 엣지)를 선명하게 만드는 것으로 경계를 검출해 경계에 있는 픽셀만을 강조하는 것.
+
+경계를 검출하려면 픽셀값의 변화가 크게 일어나는 지점을 찾아야 하는데 이는 미분으로 알 수 있음.
+
+미분 커널은    ![1](./images/differential.png)
+
+Gx 커널을 cv2.filter2D()의 kernel에 전달하면 수직(세로 방향) 경계를 검출.
+
+Gy 커널을 cv2.filter2D()의 kernel에 전달하면 수평(가로 방향) 경계를 검출.
+
+<br>
+
+**<소벨 필터(Sobel filter)>**
+
+수평, 수직, 대각선 경계 검출을 잘하는 필터.
+
+![1](./images/Sobel_Gx.png)     ![1](./images/Sobel_Gy.png)    
+
+```python
+dst=cv2.sobel(src, ddepth, dx, dy[, dst, ksize, scale, delta, borderType])
+```
+
+ddepth는 출력 영상의 데이터 타입으로 -1 입력시 입력 영상과 동일.
+
+dx, dy, ksize는 x 방향 미분 차수, y 방향 미분 차수, 커널 크기로 보통 dx=1, dy=0, ksize=3이나 dx=0, dy=1, ksize=3을 사용.
+
+scale과 delta는 연산 결과에 추가적으로 곱할 값과 더할 값으로 기본값이 1과 0.
+
+그레이스케일 영상에서 밝은 부분에서 어두운 부분으로 바뀌는 부분의 경우 미분 값이 음수가 나와 전부 0으로 설정됨 -> delta 값 적절히 설정해 해결.
 
