@@ -7,7 +7,7 @@
 **영상의 좌표를 변환시키는 함수**
 
 ```python
-dst=cv2.warpAffine(src, mtrx, dsize[, dst, flags, borderMode, borderValue])
+dst=cv2.warpAffine(src, mtrx, dsize [, dst, flags, borderMode, borderValue])
 ```
 
 dtype이 float32인 2x3 변환 행렬을 mtrx에 전달하고 결과 영상의 크기를 (width, height)로 dsize에 전달. 

@@ -19,7 +19,7 @@ NumPy 배열은 이미지를 행(row)과 열(column)의 순서로 접근하므�
 **관심영역(ROI) 지정 함수**
 
 ```python
-ret=cv2.selectROI([win_name,]img[, showCrossHair=True, fromCenter=False])
+ret=cv2.selectROI([win_name,]img [, showCrossHair=True, fromCenter=False])
 ```
 
 마우스로 ROI를 지정하고 스페이스 키나 엔터 키를 누르면 x, y, width, height 값을 튜플로 리턴.

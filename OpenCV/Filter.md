@@ -1,6 +1,8 @@
 # Filter
 
-**필터(filter)** : 입력값에서 원하지 않는 값을 걸러내고 원하는 결과를 얻는 작업
+### 필터(filter) ###
+
+입력값에서 원하지 않는 값을 걸러내고 원하는 결과를 얻는 작업
 
 **공간 영역 필터(spacial domain filter)** : 새로운 픽셀값을 얻을때 기존 픽셀과 주변 픽셀들을 활용하는 방법.
 
@@ -15,7 +17,7 @@
 커널의 각 요소와 대응하는 입력 픽셀값을 곱해서 모두 합한 것을 결과 픽셀값으로 결정하고 해당 작업을 마지막 픽셀까지 반복하는 것.
 
 ```python
-dst=cv2.filter2D(src, ddepth, kernel[, dst, anchor, delta, borderType])
+dst=cv2.filter2D(src, ddepth, kernel [, dst, anchor, delta, borderType])
 ```
 
 ddepth는 출력 영상의 dtype으로 -1 지정시 src와 같은 타입으로 설정됨.
@@ -41,7 +43,7 @@ borderType(가장자리 픽셀 확장 방법) : BORDER_CONSTANT, BORDER_REPLICAT
 만든 커널을 cv2.filter2D()의 kernel로 전달하면 됨.
 
 ```python
-dst=cv2.blur(src, ksize[, dst, anchor, borderType])
+dst=cv2.blur(src, ksize [, dst, anchor, borderType])
 ```
 
 커널을 만들고 cv2.filert2D()로 적용하는 방법도 있지만 cv2.blur()로 한번에 할 수도 있음.
@@ -88,7 +90,7 @@ ksize에 3을 입력시 3x3으로 설정됨.
 가우시안 블러링은 영상 전체를 블러링해 빠르지만 바이레터럴 필터는 엣지가 아닌 부분만 블러링하므로 느림.
 
 ```python
-dst=cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace[, dst, borderType])
+dst=cv2.bilateralFilter(src, d, sigmaColor, sigmaSpace [, dst, borderType])
 ```
 
 d는 필터의 직경으로 -1 입력시 sigmaSpace에 의해 자동으로 결정됨.
@@ -99,6 +101,8 @@ sigmaSpace는 좌표 공간에서의 필터의 표준 편차.
 
 <br>
 
+### 경계(edge) 검출 ###
+
 **샤프닝(Sharpening)**
 
 영상의 경계(edge, 엣지)를 선명하게 만드는 것으로 경계를 검출해 경계에 있는 픽셀만을 강조하는 것.
@@ -107,20 +111,28 @@ sigmaSpace는 좌표 공간에서의 필터의 표준 편차.
 
 미분 커널은    ![1](./images/differential.png)
 
+그래디언트(gradient) : X축과 Y축에서 값의 변화(기울기)
+
 Gx 커널을 cv2.filter2D()의 kernel에 전달하면 수직(세로 방향) 경계를 검출.
 
 Gy 커널을 cv2.filter2D()의 kernel에 전달하면 수평(가로 방향) 경계를 검출.
 
+그래디언트 크기(magnitude) : 픽셀값의 차이에 비례하며 그래디언트 크기는 ![1](./images/magnitude.png)
+
+그래디언트 방향(direction) : 픽셀값이 가장 급격하게 증가하는 방향으로 그래디언트 방향은 ![1](./images/direction.png)
+
+그래디언트 크기와 방향은 서로 수직.
+
 <br>
 
-**<소벨 필터(Sobel filter)>**
+**소벨 필터(Sobel filter)**
 
 수평, 수직, 대각선 경계 검출을 잘하는 필터.
 
 ![1](./images/Sobel_Gx.png)     ![1](./images/Sobel_Gy.png)    
 
 ```python
-dst=cv2.sobel(src, ddepth, dx, dy[, dst, ksize, scale, delta, borderType])
+dst=cv2.sobel(src, ddepth, dx, dy [, dst, ksize, scale, delta, borderType])
 ```
 
 ddepth는 출력 영상의 데이터 타입으로 -1 입력시 입력 영상과 동일.
@@ -130,4 +142,106 @@ dx, dy, ksize는 x 방향 미분 차수, y 방향 미분 차수, 커널 크기�
 scale과 delta는 연산 결과에 추가적으로 곱할 값과 더할 값으로 기본값이 1과 0.
 
 그레이스케일 영상에서 밝은 부분에서 어두운 부분으로 바뀌는 부분의 경우 미분 값이 음수가 나와 전부 0으로 설정됨 -> delta 값 적절히 설정해 해결.
+
+<br>
+
+**캐니 엣지(Canny edge)**
+
+쓰레시홀드 값에 따라 경계(엣지) 검출 대상을 조정할 수 있고 잡음에도 좋아 가장 많이 사용됨.
+
+```py
+dst=cv2.Canny(img, threshold1, threshold2 [, edges, apertureSize, L2gradient])
+```
+
+img는 입력 영상으로 가급적 그레이스케일 영상이 좋음.
+
+threshold1과 threshold2는 최소, 최대 임계값.
+
+apertureSize는 소벨 연산에 사용할 커널 크기로 기본값이 3.
+
+L2gradient는 그레디언트 크기를 구할 방식으로 기본값이 False.
+
+True는 ![1](./images/magnitude.png) 로 정확하지만 느리고 False는 ![1](./images/L2gradient_False.png)로 빠르지만 True보단 부정확함.
+
+<br>
+
+### 모폴로지(Morphology) ###
+
+노이즈 제거, 구멍 메꾸기, 연결되지 않은 경계 이어 붙이기 등 형태학적 관점에서 영상을 다루는 기법.
+
+전처리(pre-processing)나 후처리(post-processing) 형태로 사용됨.
+
+이진 영상을 대상으로 함.
+
+0과 1로 채워진 커널인 구조화 요소(structuring element)를 각 영상의 픽셀에 적용함.
+
+```python
+k=cv2.getStructuringElement(shape, ksize [, anchor])
+```
+
+shape은 구조화 요소 커널의 모양으로 cv2.MORPH_RECT는 사각형, cv2.MORPH_ELLIPSE는 타원형, cv2.MORPH_CROSS는 십자형.
+
+ksize는 커널의 크기로 (width, height)의 튜플로 전달.
+
+anchor는 구조화 요소의 기준점 좌표로 기본값이 중심점(-1, -1).
+
+k는 0과 1로 구성된 cv2.CV_8UC1 타입 행렬.
+
+<br>
+
+**침식(erosion)**
+
+객체 영역을 깍아내는 연산으로 객체의 크기가 감소하며 잡음 제거에 효과적.
+
+입력 영상에 구조화 요소를 적용해 구조화 요소의 1로 채워진 부분이 입력 영상의 부분에 의해 다 겹치지 않으면 anchor point를 0으로 변경.
+
+```pyth
+dst=cv2.erode(src, kernel [, anchor, iterations, borderType, borderValue])
+```
+
+kernel에 getStructuringElement()로 리턴받은 커널을 전달해도 되지만 NONE 입력시 3x3 사각형 구조화 요소를 사용.
+
+anchor는 구조화 요소의 기준점 좌표로 기본값이 중심점(-1, -1).
+
+iterations는 침식 연산을 반복할 횟수로 기본값은 1.
+
+borderType은 외곽 영역 보정 방법이며 borderValue는 외곽 영역 보정 값.
+
+<br>
+
+**팽창(dilation)**
+
+객체 영역을 확장하는 연산으로 객체의 크기가 확장되며 잡음도 확장됨.
+
+입력 영상에 구조화 요소를 적용해 구조화 요소화 입력 영상이 한 부분이라도 겹쳐지면 anchor point를 1로 변경.
+
+```python
+dst=cv2.dilate(src, kernel [,dst, anchor, iterations, borderType, borderValue])
+```
+
+cv2.erode()와 동일한 사용법.
+
+<br>
+
+**열기(Opening), 닫기(Closing)**
+
+원래의 모양을 제거하면서 노이즈 제거가 가능.
+
+열기 : 침식 연산 적용 후 팽창 연산을 적용한 것으로 밝은 노이즈 제거에 효과적이며 작거나 돌출된 픽셀 제거에 효과적.
+
+닫기 : 팽창 연산 적용 후 침식 연산을 적용한 것으로 어두운 노이즈 제거에 효과적이며 구멍을 메우거나 끊어져 보이는 픽셀을 연결하는데 효과적.
+
+```py
+dst=cv2.morphologyEx(src, op, kernel [, dst, anchor, iteration, borderType, borderValue])
+```
+
+| op                 | 모폴로지 연산 종류                                        |
+| ------------------ | --------------------------------------------------------- |
+| cv2.MORPH_OPEN     | 열기 연산                                                 |
+| cv2.MORPH_CLOSE    | 닫기 연산                                                 |
+| cv2.MORPH_GRADIENT | 그레이디언트 연산(팽창 - 침식으로 경계를 얻을 수 있음)    |
+| cv2.MORPH_TOPHAT   | 탑햇 연산(원본 영상 - 열기 연산으로 밝은 부분을 강조)     |
+| cv2.MORPH_BLACKHAT | 블랙햇 연산(원본 영상 - 닫기 연산으로 어두운 부분을 강조) |
+
+
 
