@@ -6,17 +6,57 @@
 
 컨투어를 찾아 모양 분석이나 객체 인식에 사용.
 
+<br>
 
+**외곽선(컨투어) 검출**
 
+객체의 외곽선 좌표를 추출하는 작업으로 Boundary tracking, Contour tracing.
 
+```python
+contours, hierarchy=cv2.findContours(src, mode, method [, contours, hierarchy, offset])
+```
 
+src는 입력 영상으로 0이 아닌 픽셀을 객체로 간주.
 
+매개변수중 contours와 hierarchy는 전달하지 않고 결과로 받음.
 
+OpenCV 버전 3.4.x 이상부터는 리턴 값이 3개인 듯(contours앞에 _ 써서 해결하면 됨)
 
+contours는 검출된 외곽선 좌표로 리스트이며 len(contours)는 전체 외곽선 갯수(N).
+
+hierarchy는 외곽선 계층 정보로 shape이 (1, N, 4)로 N이 외곽선 갯수.
+
+hierarchy[0, i, 0] ~ hierarchy[0, i, 3]이 next, prev, child, parent를 가리킴(-1이면 해당 사항 없음).
+
+| mode 옵션 값      | 방법                             |
+| ----------------- | -------------------------------- |
+| cv2.RETR_EXTERNAL | 가장 바깥쪽 외곽선만 제공        |
+| cv2.RETR_LIST     | 모든 외곽선을 계층 정보없이 제공 |
+| cv2.RETR_CCOMP    | 모든 외곽선을 2계층으로 제공     |
+| cv2.RETR_TREE     | 모든 외곽선을 트리 구조로 제공   |
+
+| method 옵션 값             | 방법                                        |
+| -------------------------- | ------------------------------------------- |
+| cv2.CHAIN_APPROX_NONE      | 근사화 하지않고 모든 좌표를 제공(주로 사용) |
+| cv2.CHAIN_APPROX_SIMPLE    | 수직선, 수평선, 대각선 좌표만 제공          |
+| cv2.CHAIN_APPROX_TC89_L1   | Teh&Chin L1 근사화                          |
+| cv2.CHAIN_APPROX_TC89_KCOS | Teh&Chin k cos 근사화                       |
 
 <br>
 
-**레이블링(Labeling)(Connedted component labeling)**
+```python
+dst=cv2.drawContours(img, contours, contourIdx, color, thickness)
+```
+
+외곽선을 그리는 함수로 cv2.findContours()에서 결과로 받은 contours를 전달함.
+
+contours는 그릴 외곽선 인덱스로 -1 전달시 모든 외곽선을 그림.
+
+color와 thickness는 외곽선 색상과 외곽선 두께로 thickness가 0이면 내부를 채움
+
+<br>
+
+**레이블링(Labeling)(Connected component labeling)**
 
 이진 영상에서 연결된 픽셀에 같은 번호를 매기는 작업.
 
@@ -43,4 +83,6 @@ retval, labels, stats, centroids=cv2.connectedComponentsWithStats(src [, labels,
 stats는 각 객체의 바운딩 박스로 Nx5 행렬(N은 레이블 갯수)(0번째 행은 배경 정보가 들어오며 x좌표, y좌표, 폭, 높이, 넓이 순서).
 
 centroids는 각 객체의 중심점 좌표로 Nx2 행렬(N은 레이블 갯수)(0번째 행은 배경 정보로 x좌표들의 합/픽셀 갯수, y좌표들의 합/픽셀 갯수).
+
+<br>
 
