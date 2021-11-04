@@ -56,6 +56,38 @@ color와 thickness는 외곽선 색상과 외곽선 두께로 thickness가 0이�
 
 <br>
 
+**외곽선 관련 함수**
+
+```python
+retval=cv2.arcLength(curve, closed)
+```
+
+외곽선 길이 계산함수로 curve는 외곽선 좌표로 계산할 외곽선.
+
+closed가 True면 폐곡선으로 간주하며 외곽선 길이를 retval로 리턴.
+
+```python
+retval=cv2.contourArea(contour [, oriented=False])
+```
+
+외곽선으로 둘러진 넓이 계산 함수로 외곽선 좌표를 contour로 전달.
+
+oriented가 True면 외곽선 진행 방향에 따라 음수를 리턴.
+
+```python
+retval=cv2.boundingRect(contour)
+```
+
+외곽선을 감싸는 가장 작은 사각형 좌표를 리턴하는 함수로 외곽선 좌표를 contour로 전달하며 (x, y, w, h)의 사각형 좌표를 튜플로 리턴받음.
+
+```python
+center, radius=cv2.minEnclosingCircle(points)
+```
+
+외곽선을 감싸는 가장 작은 원의 좌표와 반지름을 리턴하는 함수로 외곽선 좌표를 points로 전달하며 원의 중심 좌표를 (x, y) 튜플로 리턴받고 원의 반지름을 실수로 radius로 받음.
+
+<br>
+
 **레이블링(Labeling)(Connected component labeling)**
 
 이진 영상에서 연결된 픽셀에 같은 번호를 매기는 작업.
