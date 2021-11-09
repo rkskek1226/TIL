@@ -66,6 +66,8 @@ retval=cv2.arcLength(curve, closed)
 
 closed가 True면 폐곡선으로 간주하며 외곽선 길이를 retval로 리턴.
 
+<br>
+
 ```python
 retval=cv2.contourArea(contour [, oriented=False])
 ```
@@ -74,17 +76,33 @@ retval=cv2.contourArea(contour [, oriented=False])
 
 oriented가 True면 외곽선 진행 방향에 따라 음수를 리턴.
 
+<br>
+
 ```python
 retval=cv2.boundingRect(contour)
 ```
 
 외곽선을 감싸는 가장 작은 사각형 좌표를 리턴하는 함수로 외곽선 좌표를 contour로 전달하며 (x, y, w, h)의 사각형 좌표를 튜플로 리턴받음.
 
+<br>
+
 ```python
 center, radius=cv2.minEnclosingCircle(points)
 ```
 
 외곽선을 감싸는 가장 작은 원의 좌표와 반지름을 리턴하는 함수로 외곽선 좌표를 points로 전달하며 원의 중심 좌표를 (x, y) 튜플로 리턴받고 원의 반지름을 실수로 radius로 받음.
+
+<br>
+
+```python
+approxCurve=cv2.approxPolyDP(contour, epsilon, closed)
+```
+
+외곽선 근사화 함수로 컨투어 좌표를 contour로 받음.
+
+epsion은 근사값 정확도로 일반적으로 cv2.arcLength()로 구한 외곽선 전체 길이*0.02로 전달.
+
+closed에 True 설정시 폐곡선으로 간주.
 
 <br>
 
@@ -117,4 +135,34 @@ stats는 각 객체의 바운딩 박스로 Nx5 행렬(N은 레이블 갯수)(0�
 centroids는 각 객체의 중심점 좌표로 Nx2 행렬(N은 레이블 갯수)(0번째 행은 배경 정보로 x좌표들의 합/픽셀 갯수, y좌표들의 합/픽셀 갯수).
 
 <br>
+
+**허프 변환 : 직선 검출(Hough transform)**
+
+직선 검출.
+
+```python
+lines=cv2.HoughLines(img, rho, theta, threshold [, lines, srn=0, stn=0, min_theta, max_theta])
+```
+
+img는 입력 영상으로 엣지 영상.
+
+rho는 거리 측정 해상도로 1.0이면 1픽셀 간격.
+
+theta는 각도 측정 해상도로 np.pi/180이면 1도 간격
+
+threshold는 직선으로 판단할 임계값으로 값. 
+
+lines는 검출 결과로 numpy.ndarray형 배열. (rho, theta)을 담고있는 Nx1x2 배열.
+
+<br>
+
+```python
+lines=cv2.HoughLinesP(img, rho, theta, threshold [, lines, mLineLength, maxLineGap])
+```
+
+확률적 허프 변환으로 허프 직선 검출과 달리 무작위로 선정한 픽셀로 허프 변환을 수행하는 방식.
+
+리턴값이 HoughLines와 다름.
+
+리턴값이 시작 좌표와 끝 좌표를 담고있는 (x1, y1, x2, y2)로 Nx1x4 배열로 리턴 받음(dtype이 numpy.int32).
 
