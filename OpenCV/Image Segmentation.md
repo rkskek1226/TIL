@@ -138,11 +138,11 @@ centroids는 각 객체의 중심점 좌표로 Nx2 행렬(N은 레이블 갯수)
 
 **허프 변환 : 직선 검출(Hough transform)**
 
-직선 검출.
-
 ```python
 lines=cv2.HoughLines(img, rho, theta, threshold [, lines, srn=0, stn=0, min_theta, max_theta])
 ```
+
+직선 검출.
 
 img는 입력 영상으로 엣지 영상.
 
@@ -165,4 +165,32 @@ lines=cv2.HoughLinesP(img, rho, theta, threshold [, lines, mLineLength, maxLineG
 리턴값이 HoughLines와 다름.
 
 리턴값이 시작 좌표와 끝 좌표를 담고있는 (x1, y1, x2, y2)로 Nx1x4 배열로 리턴 받음(dtype이 numpy.int32).
+
+<br>
+
+**허프 변환 : 원 검출**
+
+원 검출.
+
+동심원이 여러개이면 가장 작은 원만 검출됨.
+
+```python
+circles=cv2.HoughCircles(img, method, dp, minDist [, circles, param1, param2, minRadius, maxRadius])
+```
+
+img는 입력 영상으로 엣지 영상이 아닌 일반 영상(그레이스케일 영상)
+
+method는 검출 방식으로 cv2.HOUGH_GRADIENT만 가능(OpenCV 4.2 이하버전이면)(OpenCV 4.3버전부터 cv2.HOUGH_GRADIENT_ALT 가능)
+
+dp는 입력 영상과 경사 누적의 해상도 반비례율로 1이면 입력 영상과 동일.
+
+minDist는 검출된 원 중심의 최소 거리.
+
+param1은 캐니 엣지에 전달할 쓰레시홀드의 최대값이고 param2는 경사도 누적 경계 값.
+
+minRadius와 maxRadius는 검출할 원의 최소, 최대 반지름.
+
+circles는 검출된 원의 정보로 (cx, cy, r)이 x좌표, y좌표, 반지름의 정보를 담고있는 1xNx3의 np.float32 배열.
+
+
 
