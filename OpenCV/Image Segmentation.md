@@ -192,5 +192,22 @@ minRadius와 maxRadius는 검출할 원의 최소, 최대 반지름.
 
 circles는 검출된 원의 정보로 (cx, cy, r)이 x좌표, y좌표, 반지름의 정보를 담고있는 1xNx3의 np.float32 배열.
 
+<br>
 
+**그랩컷(GrabCUt)**
 
+그래프 컷을 기반으로 영역을 분할하는 알고리즘.
+
+사각형 영역을 지정하면 전경과 배경을 분리해줌.
+
+```python
+mask, bdgModel, fgdModel=cv2.grabCut(img, mask, rect, bgdModel, fgdModel, iterCount, mode=None)
+```
+
+mask는 입력 영상과 크기가 같은 1채널 배열로 배경과 전경을 구분하는 값을 저장.
+
+rect는 ROI 영역으로 사각형 좌표(x, y, width, height)
+
+bgdModel과 fgdModel은 임시 배경/전경 모델로 재사용할 경우 수정하면 안됨
+
+iterCount는 반복 횟수이고 mode는 동작 방법을 지정.
