@@ -75,6 +75,16 @@ corners는 코너 검출 좌표로 dtype이 numpy.float32인 Nx1x2 배열.
 
 <br>
 
+**특징점 검출**
+
+OpenCV는 cv2.Feature2D 클래스를 상속받아 특징 검출기를 구현.
+
+추출된 특징점은 cv2.KeyPoint 객체로 표현됨.
+
+cv2.KeyPoint 객체는 특징점 정보 객체로 pt, size, angle의 멤버를 가짐.
+
+pt는 (x, y) 좌표로 float 타입.
+
 ```python
 detector=cv2.FastFeatureDetector_create([threshod [, nonmaxSuppression, type]])
 keypoints=detector.detect(src)
@@ -92,5 +102,18 @@ type은 코너 검출 방법으로 기본값이 cv2.FAST_FEATURE_DETECTOR_TYPE_9
 
 src는 입력 영상으로 그레이스케일 영상.
 
+detector는 FastFeatureDetector 특징 검출기 객체로 detector.detect()로 특징점을 검출.
+
 keypoints는 검출된 코너 정보로 cv2.KeyPoint 객체를 담은 리스트. cv2.KeyPoint의 pt[0]으로 x 좌표, pt[1]으로 y 좌표 접근.
 
+<br>
+
+```python
+outImg=cv2.drawKeyPoints(img, keypoints, outImg [, color, flag])
+```
+
+검출된 코너 정보인 keypoints를 전달해 특징점을 그려주는 함수.
+
+color는 특징점을 표시할 색상이며 랜덤이 기본값.
+
+flag는 특징점을 그리는 방법으로 cv2.DRAW_MATCHES_FLAGS_DEFAULT가 기본값.
