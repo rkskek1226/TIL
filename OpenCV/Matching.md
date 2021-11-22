@@ -104,7 +104,7 @@ src는 입력 영상으로 그레이스케일 영상.
 
 detector는 FastFeatureDetector 특징 검출기 객체로 detector.detect()로 특징점을 검출.
 
-keypoints는 검출된 코너 정보로 cv2.KeyPoint 객체를 담은 리스트. cv2.KeyPoint의 pt[0]으로 x 좌표, pt[1]으로 y 좌표 접근.
+keypoints는 검출된 특징점 정보로 cv2.KeyPoint 객체를 담은 리스트. cv2.KeyPoint의 pt[0]으로 x 좌표, pt[1]으로 y 좌표 접근.
 
 <br>
 
@@ -117,3 +117,47 @@ outImg=cv2.drawKeyPoints(img, keypoints, outImg [, color, flag])
 color는 특징점을 표시할 색상이며 랜덤이 기본값.
 
 flag는 특징점을 그리는 방법으로 cv2.DRAW_MATCHES_FLAGS_DEFAULT가 기본값.
+
+<br>
+
+**기술자(디스크립터, descriptor)**
+
+특징점 부분의 밝기, 색상, 방향, 크기 등의 정보를 표현한 벡터로 numpy.ndarray로 표현됨.
+
+행 갯수는 특징점의 갯수. 열 갯수는 특징점 기술자 알고리즘에 의해 정의됨.
+
+cv2.Feature2D 클래스를 상속받아 구현함.
+
+```python
+keypoints, descriptors=detector.compute(image, Keypoints [, descriptor]) //cv2.OO_create()의 리턴값인 detector를 이용.
+```
+
+compute()는 특징점 기술자를 계산하는 함수.
+
+Keypoints는 검출된 특징점 정보로 cv2.KeyPoint 객체를 담은 리스트.
+
+descriptors는 특징점 기술자 행렬.
+
+<br>
+
+```python
+keypoints, descriptors=detector.detectAndCompute(image, mask, descriptor)
+//cv2.OO_create()의 리턴값인 detector를 이용.
+```
+
+detectAndCompute()는 특징점 검출 및 계산하는 함수.
+
+Keypoints는 검출된 특징점 정보로 cv2.KeyPoint 객체를 담은 리스트.
+
+descriptors는 특징점 기술자 행렬.
+
+<br>
+
+**특징점 매칭(feature matching)**
+
+두 영상에서 추출한 특징점 기술자를 비교하여 서로 유사한 기술자를 찾는 작업.
+
+OpenCV는 특징 매칭 알고리즘을 추상 클래스인 cv2.DescriptorMatcher를 상속받아 구현.
+
+매칭 결과의 구조와 모양을 통일하기위해 모든 매칭 결과를 cv2.DMatch 객체로 리턴.
+
