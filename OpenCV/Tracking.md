@@ -28,7 +28,7 @@ BackgroundSubtractorMOG2 객체를 생성하는 함수로 history는 히스토�
 
 varThreshold는 해당 픽셀이 배경 모델에의해 잘 표현되는 지를 판단하는 것으로 기본값이 16.
 
-detackShadows는 그림자 검출 여부로 기본값은 True.
+detactShadows는 그림자 검출 여부로 기본값은 True.
 
 배경이 제거된 객체를 리턴.
 
@@ -40,4 +40,28 @@ learningRate는 배경 모델 학습 속도를 지정하는 것으로 0이면 �
 
 <br>
 
-getBackgroundImage()는 배경 영상을 반환하는 함수
+getBackgroundImage()는 배경 영상을 반환하는 함수.
+
+<br>
+
+**평균 이동 추적(MeanShift)**
+
+평균 이동 알고리즘으로 객체를 추적.
+
+추적할 객체를 선정해 HSV 컬러 스페이스의 H값의 히스토그램을 계산.
+
+전체 영상의 히스토그램 계산 결과로 역투영.
+
+역투영 결과에서 이동한 객체를 MeanShift로 추적.
+
+```python
+retval, window = cv2.meanShift(probImage, window, criteria)
+```
+
+probImage는 객체의 히스토그램 역투영 영상.
+
+window는 검색 시작 위치이자 검색 결과 위치로 (x, y, width, height) 튜플로 지정.
+
+criteria는 검색 종료 기준으로 type, maxCount, epsilon을 튜플로 지정. ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)을 주로 사용)
+
+retval은 알고리즘이 반복한 횟수.
