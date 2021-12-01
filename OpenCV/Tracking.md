@@ -65,3 +65,24 @@ window는 검색 시작 위치이자 검색 결과 위치로 (x, y, width, heigh
 criteria는 검색 종료 기준으로 type, maxCount, epsilon을 튜플로 지정. ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)을 주로 사용)
 
 retval은 알고리즘이 반복한 횟수.
+
+MeanShift는 색상을 기반으로 추적하므로 객체의 색상이 주변과 비슷하면 추적이 어렵고 객체의 크기와 방향과는 상관없이 항상 같은 크기의 윈도우를 반환한다는 단점이 있음.
+
+<br>
+
+**캠시프트(CamShift : Continously Adaptive MeanShift)**
+
+MeanShift의 단점을 보완한 방식으로 객체의 크기와 방향에 따라 윈도우 크기가 달라짐.
+
+```python
+retval, window = cv2.CamShift(probImage, window, criteria)
+```
+
+probImage는 객체의 히스토그램 역투영 영상.
+
+window는 검색 시작 위치이자 검색 결과 위치로 (x, y, width, height) 튜플로 지정.
+
+criteria는 검색 종료 기준으로 type, maxCount, epsilon을 튜플로 지정. ( cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1)을 주로 사용)
+
+retval은 추적하는 객체를 나타내는 사각형 정보를 리턴. ((cx, cy), (width, height), angle) 형태의 튜플.
+
