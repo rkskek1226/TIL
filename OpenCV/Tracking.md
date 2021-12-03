@@ -86,3 +86,31 @@ criteria는 검색 종료 기준으로 type, maxCount, epsilon을 튜플로 지�
 
 retval은 추적하는 객체를 나타내는 사각형 정보를 리턴. ((cx, cy), (width, height), angle) 형태의 튜플.
 
+<br>
+
+**옵티컬 플로우(Optical flow)**
+
+객체의 움직임에 의해 나타나는 객체의 이동 정보 패턴(방향과 거리).
+
+계산하는 방식에 따라 일부 픽셀만을 계산하는 희소 옵티컬 플로우와 영상 전체 픽셀을 계산하는 밀집 옵티컬 플로우로 나뉨.
+
+```python
+nextPts, status, err=cv2.calcOpticalFlowPyrLK(prevImg, nextImg, prevPts, nextPts, status=None, err=None, winSize=None, maxLevel=None,criteria=None, flags=None, minEigThreshold=None)
+```
+
+루카스-카나데 알고리즘으로 희소 옵티컬 플로우를 구현한 함수.
+
+prevImg와 nextImg는 이전 프레임 영상과 현재 프레임 영상으로 8비트 영상.
+
+prevPts는 이전 프레임에서 추적할 점들로 (N, 1, 2)의 dtype이 np.float32인 ndarray.
+
+nextPts는 prevPts 점들이 이동한 현재 프레임 좌표로 주로 매개변수로는 None을 전달하고 리턴으로 받음.
+
+status는 매칭 상태로 (N, 1)의 dtype이 np.uint8인 ndarray.
+
+err는 결과 오차 정보로 (N, 1)의 dtype이 np.float32인 ndarray.
+
+winSize는 피라미드 레벨에서 검색할 윈도우 크기로 (21, 21)이 기본값
+
+maxLevel은 최대 피라미드 레벨로 기본값은 3이고 0이면 피라미드 사용 안함.
+
