@@ -114,3 +114,22 @@ winSize는 피라미드 레벨에서 검색할 윈도우 크기로 (21, 21)이 �
 
 maxLevel은 최대 피라미드 레벨로 기본값은 3이고 0이면 피라미드 사용 안함.
 
+<br>
+
+```python
+flow=cv2.calcOpticalFlowFarneback(prev, next, flow, pyr_scale, levels, winsize, iterations, poly_n, poly_sigma, flags)
+```
+
+영상 전체 픽셀을 계산하는 밀집 옵티컬플로우 함수로 속도가 느림.
+
+prev와 next는 이전 영상과 현재 영상으로 그레이스케일 영상.
+
+pyr_scale은 피라미드 영상을 만들 때의 축소 비율.
+
+levels는 피라미드 영상 개수이고 winsize는 평균 윈도우 크기.
+
+iterations는 각 피라미드 레벨에서 알고리즘을 반복할 횟수.
+
+poly_n은 다항식 확장을 위한 이웃 픽셀 크기이고 poly_sigma는 가우시안 표준 푠차.
+
+flow는 계산된 옵티컬플로우로 shape이 (h, w, 2)이고 dtype이 np.float32인 np.ndarray인 .
