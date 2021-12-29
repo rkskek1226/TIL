@@ -130,6 +130,20 @@ levels는 피라미드 영상 개수이고 winsize는 평균 윈도우 크기.
 
 iterations는 각 피라미드 레벨에서 알고리즘을 반복할 횟수.
 
-poly_n은 다항식 확장을 위한 이웃 픽셀 크기이고 poly_sigma는 가우시안 표준 푠차.
+poly_n은 다항식 확장을 위한l 이웃 픽셀 크기이고 poly_sigma는 가우시안 표준 푠차.
 
-flow는 계산된 옵티컬플로우로 shape이 (h, w, 2)이고 dtype이 np.float32인 np.ndarray인 .
+flow는 계산된 옵티컬플로우로 shape이 (h, w, 2)이고 dtype이 np.float32인 np.ndarray인 . 
+
+<br>
+
+**OpenCV Tracking API**
+
+8개의 트래커(Tracker)를 제공(Boosting, MIL, KCF, TLD, MedianFlow, GOTURN, CSRT, MOSSE)
+
+cv2.Tracker 추상 클래스로 인터페이스를 통일해 구현 클래스의 객체 생성 함수만 다름.
+
+cv2.TrackerOOO_create()로 트래커 객체 생성.
+
+cv2.Tracker.init(image, boundingBox)로 트랙커 초기화(boundingBox는 roi로 (x, y, w, h) 실수형 튜플).
+
+cv2.Tracker.update(image)로 프레임마다 호출해 추적하고자하는 객체를 추적(리턴값으로 추적 성공 여부를 알리는 True, False인 retval와 추적 대상의 좌표(x, y, w, h)인 boundingBox를 리턴).
