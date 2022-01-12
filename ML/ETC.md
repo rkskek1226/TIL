@@ -98,6 +98,25 @@ model.fit(X,Y,epochs=200,batch_size=10)
 
 <br>
 
+문자 데이터를 숫자로 변환하고 원핫 인코딩 사용한 것.
+
+```python
+from sklearn.preprocessing import LabelEncode
+from keras.utils import np_utils
+e=LabelEncoder()
+e.fit(y)
+Y=e.transform(y)
+Y_encoded=np_utils.to_categorical(Y)
+```
+
+데이터 입력시 숫자(정수, 실수)형이여야하므로 문자 데이터를 숫자형으로 바꿔야함.
+
+단순 숫자로 바꿀 경우 이상한 관계를 형성할 수 있으므로 원-핫 인코딩 방식을 사용.
+
+0과 1로만 구성되어 True를 표현하는 1개의 1과 False를 표현하는 여러개의 0으로 구성된 숫자로 변환됨.
+
+<br>
+
 X 데이터와 Y 데이터에서 학습셋과 테스트셋을 만들 수 있음.
 
 ```python
