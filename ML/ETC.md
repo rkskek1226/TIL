@@ -117,18 +117,20 @@ Y_encoded=np_utils.to_categorical(Y)
 
 <br>
 
-X 데이터와 Y 데이터에서 학습셋과 테스트셋을 만들 수 있음.
+과적합(Over fitting)
 
 ```python
 from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test=train_test_split(X, Y, test_size=0.3, random_state=seed) 
 ```
 
+X 데이터와 Y 데이터에서 학습셋과 테스트셋을 만들 수 있음.
+
 입력 데이터 X와 결과 데이터 Y에서 학습셋 70%, 테스트셋 30%로 구분하는 함수. 
 
 <br>
 
-**K겹 교차 방법(k-fold corss validation)**
+**K겹 교차 방법(k-fold cross validation)**
 
 데이터셋이 작을 경우 데이터셋을 여러개로 나누어 하나씩 테스트셋으로 사용하고 나머지를 학습셋으로 사용하는 방법.
 
@@ -138,4 +140,23 @@ n_fold=10   # 10개의 셋으로 나눔
 skf=StratifiedKFold(n_splits=n_fold, shuffle=True, random_state=seed)
 ```
 
- 
+ <br>
+
+**CNN(Convolutional Neural Network)**
+
+이미지에 특징을 추출하기 위해 마스크(커널, 필터)를 적용해 특징을 추출하는 방식.
+
+커널을 적용해 만들어진 층을 컨볼루젼(합성곱)이라하고 커널의 개수만큼 컨볼루젼 층이 만들어짐.
+
+커널을 적용해 만든 Feature map의 크기는 입력 데이터보다 작음.
+
+패딩(padding) : 입력 데이터 외부에 한 픽셀씩을 추가하는 것으로 컨볼루젼을 해도 입력 데이터의 크기가 작아지지 않음.
+
+풀링(pooling) : 컨볼루젼 층을 통해 특징을 추출하여도 여전히 결과가 커서 크기를 줄이고자 할 때 사용.
+
+드랍 아웃(Drop out) : 과적합을 피하기위해 은닉층의 노드 일부를 랜덤으로 끄는 것.
+
+<br>
+
+**RNN(Recurrent Neural Network)**
+
