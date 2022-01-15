@@ -150,13 +150,24 @@ skf=StratifiedKFold(n_splits=n_fold, shuffle=True, random_state=seed)
 
 커널을 적용해 만든 Feature map의 크기는 입력 데이터보다 작음.
 
-패딩(padding) : 입력 데이터 외부에 한 픽셀씩을 추가하는 것으로 컨볼루젼을 해도 입력 데이터의 크기가 작아지지 않음.
+패딩(Padding) : 입력 데이터 외부에 한 픽셀씩을 추가하는 것으로 컨볼루젼을 해도 입력 데이터의 크기가 작아지지 않음.
 
-풀링(pooling) : 컨볼루젼 층을 통해 특징을 추출하여도 여전히 결과가 커서 크기를 줄이고자 할 때 사용.
+풀링(Pooling) : 컨볼루젼 층을 통해 특징을 추출하여도 여전히 결과가 커서 크기를 줄이고자 할 때 사용.
 
 드랍 아웃(Drop out) : 과적합을 피하기위해 은닉층의 노드 일부를 랜덤으로 끄는 것.
 
 <br>
 
-**RNN(Recurrent Neural Network)**
+**Keras에서 predict()와 predict_classes() 차이**
 
+분류의 경우 predict()는 확률을 리턴하고 predict_classes()는 클래스의 인덱스(label)를 리턴
+
+Ex. 개와 고양이 분류의 경우 predict()는 0.6(고양이), 0.4(개)로 리턴하고 predict_classes()는 0(고양이)이나 1(개)로 리턴.
+
+회귀의 경우 predict()는 예상된 수치를 리턴하고 predict_classes()는 할 수 없음.
+
+Ex. 집값 예측의 경우 predict는 예상된 가격을 리턴하고 predict_class는 할 수 없음.
+
+Tensorflow 2.6 버젼 이상부터 predict_classes()는 오류 발생
+
+따라서 QQ=model.predict(WW)     EE=np.argmax(QQ, axix=1)로 작성할 것.
