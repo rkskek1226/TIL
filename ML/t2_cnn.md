@@ -69,3 +69,18 @@ tf.keras.layers.Dropout(0.2)   # 20% 노드들을 랜덤으로 0으로 만들라
 전이 학습을 위한 방법으로 특성 추출과 미세 조정 기법이 있음.
 
 1. 특성 추출(feature extractor) : 사전 훈련된 모델을 가져와 마지막 완전 연결층만 새로 학습시킴.
+2. 미세 조정 기법(fine tuning) : 사전 훈련된 모델을 가져와 재학습 시키거나 가중치 일부를 재학습 시키는 것.
+
+
+
+<br>
+
+ImageDataGenerator 클래스
+
+케라스에서 제공하는 이미지 학습을 돕는 패키지로 데이터 전처리를 도와줌.
+
+<br>
+
+flow_from_directory 메소드
+
+ImageDataGenerator 클래스의 메서드로 폴더 형태의 데이터 구조를 바로 사용할 수 있음.
