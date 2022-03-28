@@ -84,3 +84,13 @@ ImageDataGenerator 클래스
 flow_from_directory 메소드
 
 ImageDataGenerator 클래스의 메서드로 폴더 형태의 데이터 구조를 바로 사용할 수 있음.
+
+<br>
+
+<br>
+
+그래프 신경망(GNN, Graph Neural Network)
+
+그래프 구조에서 사용하는 신경망으로 그래프를 인접 행렬(adjacency matrix)로 표현하고 특성 행렬 과정을 거쳐 그래프의 특성이 추출됨.
+
+리드 아웃(readout) : 특성 행렬을 하나의 벡터로 변환하는 함수로 그래프를 표현하는 하나의 벡터를 생성.
