@@ -68,12 +68,14 @@ Y_encoded=np_utils.to_categorical(Y)
 
 ```python
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test=train_test_split(X, Y, test_size=0.3, random_state=seed) 
+X_train, X_test, Y_train, Y_test=train_test_split(X, Y, test_size=0.3, random_state=seed, stratify=Y) 
 ```
 
 X 데이터와 Y 데이터에서 학습셋과 테스트셋을 만들 수 있음.
 
 입력 데이터 X와 결과 데이터 Y에서 학습셋 70%, 테스트셋 30%로 구분하는 함수. 
+
+stratify는 클래스 비율을 맞춰줌.
 
 <br>
 
