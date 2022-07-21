@@ -327,11 +327,49 @@
 
 여러 모델을 학습시키고 각 모델의 예측을 취합해 최종 결과를 만드는 머신러닝 알고리즘.
 
+배깅(Bagging) 방법과 부스팅(Boosting) 방법이 있음.
+
+![decision_tree](image/bagging_boosting.png)
+
+<br>
+
+<br>
+
+**배깅(Bagging)**
+
+Bootstrap Aggregation의 약자로 부트스트랩 샘플로 학습시킨 모델의 결과들을 집계(Aggregation)하는 방법.
+
+분류일 경우 투표 방식(Voting)으로 결과를 집계하며 회귀일 경우 평균으로 집계.
+
+병렬 구조로 학습.
+
+![decision_tree](image/bagging.png)
+
+<br>
+
+<br>
+
+**부스팅(Boosting)**
+
+가중치를 활용해 약 분류기(weak classifier)를 강 분류기(strong classifier)로 만드는 방법.
+
+처음 모델의 예측 결과에 따라 가중치가 부여되고 부여된 가중치는 다음 모델에 영향을 줌.
+
+잘못 예측한 데이터에 집중해 큰 가중치를 부여하고 정확히 예측한 데이터에는 작은 가중치를 부여해 잘못 예측한 데이터를 다음 모델에서는 정확하게 예측할 수 있도록 함.
+
+순차적으로 학습.
+
+배깅 방법에 비해 성능이 좋지만 속도가 느리고 과적합 될 가능성이 있음.
+
+![decision_tree](image/boosting.png)
+
 <br>
 
 <br>
 
 **랜덤 포레스트(Random Forest)**
+
+앙상블 학습의 한 종류.
 
 결정 트리를 랜덤으로 만들어 숲을 만들고 각 결정 트리의 예측을 사용해 최종 예측을 만듦.
 
@@ -346,3 +384,24 @@ OOB 샘플(Out of Bag sample) : 부트스트랩 샘플에 포함되지 못한 �
 분류 모델인 RandomForestClassifier는 특성 개수의 제곱근만큼의 특성을 선택.
 
 회귀 모델인 RandomRorestRegressor는 전체 특성을 사용.
+
+<br>
+<br>
+
+**엑스트라 트리(Extra Tree)**
+
+앙상블 학습의 한 종류.
+
+랜덤 포레스트와 유사하지만 부트스트랩 샘플을 사용하지 않고 전체 학습 데이터셋을 사용한다는 차이가 있음.
+
+트리의 노드를 만들때 최선의 분할을 찾는 것이 아니라 무작위로 분할.
+
+<br>
+
+<br>
+
+**그레디언트 부스팅(Gradient Boosting)**
+
+앙상블 학습의 한 종류.
+
+scikit-learn의 GradientBoostingClassifier는 깊이가 3인 결정 트리를 100개를 사용.
