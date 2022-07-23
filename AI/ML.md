@@ -39,7 +39,7 @@
 
 **비지도 학습**
 
-- 정답 Label이 없는 데이터를 비슷한 특징끼리 군집화하여 새로운 데이터에 대한 결과를 예측하는 방법.
+- 정답 Label이 없는 데이터를 비슷한 특징끼리 그룹화하여 새로운 데이터에 대한 결과를 예측하는 방법.
 
 1. 군집(clustering) : k-평균 군집화, 밀도 기반 군집 분석
 2. 차원 축소(dimensionality reduction) : 주성분 분석
@@ -126,86 +126,6 @@
 
 <br>
 
-**결정 계수(Coefficient of Determination)**
-
-* $R^2$이라 부르기도 하며 회귀 모델에서 독립 변수가 종속 변수를 얼마나 설명하는 지를 판단하는 지표.
-* 1에 가까울수록 잘 설명하며 0에 가까울수록 잘 설명 못함.
-* 결정 계수 = $SSE\over SST$ = 1 - $SSR\over SST$
-* SST(Total Sum of Squares) : 타깃에서 타깃의 평균을 뺀 값의 제곱의 총 합     $\sum{(y - \bar{y})^2}$
-* SSE(Explained Sum of Squares) : 예측값에서 타깃의 평균을 뺀 값의 제곱의 합   $\sum{(\hat{y} - \bar{y})^2}$  
-* SSR(Sum of Squares Residual) : 타깃에서 예측값을 뺀 값의 제곱의 합     $\sum{({y} - \hat{y})^2}$
-
-<br>
-
-<br>
-
-**선형 회귀(Linear regression)**
-
-- 독립 변수와 종속 변수의 관계를 분석해 독립 변수에 따른 종속 변수를 예측하는 회귀 알고리즘.
-
-- 회귀 계수(regression coefficient)를 선형 결합으로 표현할 수 있는지가 중요.
-
-  (독립 변수가 일차식인지 이차식인지 로그 함수식인지가 아님)
-
-  $y = a_0 + a_1x + a_2x^2 + a_3x^3$에서 $x^2$, $x^3$때문에 비선형이 아니라 회귀 계수인 $a_0$, $a_1$, $a_2$, $a_3$이 선형성이 있기때문에 선형 회귀식($y = a_0 + a_1x_1 + a_2x_2 + a_3x_3$으로 표현 가능).
-
-- 선형 회귀 모델은 선형 결합으로 표현하기때문에 표현력에 한계가 있음.
-
-- 딥러닝으로 비선형 회귀 모델을 만듦.
-
-- scikit-learn에서 from sklearn.linear_model import LinearRegression
-
-<br>
-
-<br>
-
-**다항 회귀(Polynomial Regression)**
-
-* 선형 회귀에서 독립 변수의 차수를 높인 형태.
-* scikit-learn에서 from sklearn.preprocessing import PolynomialFeatures
-* scikit-learn에서 from sklearn.linear_model import LinearRegression
-* PolynomialFeatures()에서 degree를 설정.
-* PolynomialFeatures()의 fit(train_x)와 transform(train_x)를 사용하고 LinearRegression()의 fit()을 사용.
-
-<br>
-
-<br>
-
-**다중 회귀(Multiple Regression)**
-
-* 2개 이상의 독립 변수(여러개의 특성)를 사용하는 다변량(multivariate) 선형 회귀.
-* scikit-learn에서 from sklearn.linear_model import LinearRegression
-
-<br>
-
-<br>
-
-**릿지(Ridge)**
-
-* 선형 회귀 모델에 규제를 추가한 모델.
-* 계수를 제곱한 값을 기준으로 규제를 적용.
-* 매개변수 alpha 값으로 규제의 강도를 조절.
-* alpha 값이 크면 규제 강도가 강해 계수 값을 더 줄여 과소 적합으로 유도됨.
-* alpha 값이 작으면 규제 강도가 약해 계수 값을 조금만 줄여 과대 적합으로 유도됨.
-* alpha 값에 대한 $R^2$ 값의 그래프를 그려 학습 데이터와 테스트 데이터의 점수 차이가 가장 작은 지점이 최적의 alpha 값.
-
-<br>
-
-<br>
-
-**라쏘(Lasso)**
-
-* 선형 회귀 모델에 규제를 추가한 모델.
-* 계수의 절대값을 기준으로 규제를 적용.
-* 매개변수 alpha 값으로 규제의 강도를 조절.
-* alpha 값이 크면 규제 강도가 강해 계수 값을 더 줄여 과소 적합으로 유도됨.
-* alpha 값이 작으면 규제 강도가 약해 계수 값을 조금만 줄여 과대 적합으로 유도됨.
-* alpha 값에 대한 $R^2$ 값의 그래프를 그려 학습 데이터와 테스트 데이터의 점수 차이가 가장 작은 지점이 최적의 alpha 값.
-
-<br>
-
-<br>
-
 **특성 공학(Feature Engineering)**
 
 * 기존의 특성을 사용해 새로운 특성을 만드는 작업.
@@ -214,71 +134,23 @@
 
 <br>
 
-**K-최근접 이웃(K-nearest neighbor)**
-
-- 새로운 입력을 받았을 때 기존 클러스터에서 모든 데이터와 인스턴스 기반 거리를 측정하고 가장 많은 속성을 가진 클러스터에 할당하는 분류 알고리즘.
-
-![k-nearnest](/image/k-nearnest.png)
-
-<br>
-
-<br>
-
-**서포트 벡터 머신(Support Vector Machine)**
-
-- 분류를 위해 기준선을 정의해 결정 경계(기준선)를 기준으로 어디에 속하는지 분류하는 모델.
-- 서포트 벡터(support vector) : 결정 경계와 가까이 있는 데이터들.
-- 마진(margin) : 결정 경계와 서포트 벡터 사이의 거리.
-- 최적의 결정 경계는 마진을 최대로 해야함.
-- SVM은 선형 분류와 비선형 분류를 지원하며 비선형 분류를 위해 커널 트릭(kernel trick)이 존재.
-- 선형 분류를 위해서 선형 커널(linear kernel)을 사용하고 비선형 분류를 위해 다항식 커널(polynomial kernel)과 가우시안 RBF 커널(Gaussian RBF kernel)을 사용.
-
-![svm](image/svm.png)
-
-<br>
-
-<br>
-
-**결정 트리(Decision tree)**
-
-- 트리 구조로 데이터를 분류하는 모델.
-- 데이터 스케일에 대한 전처리 작업을 할 필요가 없음.
-- 1차 분류 후 순도(homogeneity)는 증가하고 불순도(impurity)와 불확실성(uncertainty)는 감소하는 방향으로 학습을 진행함.
-- 순도를 계산하는 방법에는 엔트로피(entropy)와 지니 계수(Gini index)가 있음.
-- 엔트로피 : 불확실성을 수치로 나타낸 것으로 엔트로피가 높을수록 불확실성이 높음. 불확실성이 낮으면 순도가 높은 것.
-- 지니 계수 : 불순도를 측정하는 지표로 원소 n개중 임의로 2개를 추출했을때 추출된 2개가 다른 그룹에 속할 확률을 의미. 노드에 하나의 클래스만 있다면 지니 계수가 0으로 순도가 가장 높고 불순도가 낮은 것.
-- scikit-learn에서 from sklearn.tree import DecisionTreeClassifier
-
-![decision_tree](image/decision_tree.jpg)
-
-
-
-<br>
-
-<br>
-
-**로지스틱 회귀(Logistic regression) **
-
-* 각 집단에 속할 확률을 예측하고 분류 기준값에 따라 특정 범주로 분류하는 모델.
-
-- 선형 회귀처럼 선형 방정식을 사용한 분류(classification).
-- 선형 회귀의 계산 값을 0 ~ 1 사이의 값으로 압축.
-- 이진 분류에서는 하나의 선형 방정식을 학습하고 출력값을 시그모이드 함수에 통과시켜 0 ~ 1 사이의 값을 만듦(해당 값이 양성 클래스일 확률).
-- 다중 분류에서는 클래스 개수만큼 선형 방정식을 학습하고 각 방정식의 출력값을 소프트맥스 함수에 통과시켜 전체 클래스에 대한 합이 1이 되도록 만듦(해당 값이 각 클래스일 확률).
-
-
-- 계수의 제곱을 규제하는데 이를 L2 규제라고도 함.
-- 매개변수 C 값이 작으면 규제가 커짐.
-- scikit-learn에서 from sklearn.linear_model import LogisticRegression
-
-<br>
-
-<br>
-
 **K-평균 군집화(K-means clustering)**
+
+![k-nearnest](/image/KMeans.png)
 
 - 레이블이 없는 데이터를 입력받아 각 데이터에 레이블을 할당해 군집화를 수행.
 - 중심점 선택 -> 클러스터 할당 -> 새로운 중심점 선택 -> 범위 확인 과정을 반복 수행.
+- 처음에는 랜덤으로 중심점을 선택하고 점차 가장 가까운 샘플의 중심으로 중심점을 이동시킴.
+- k-평균 군집화 알고리즘의 단점은 사전에 클러스터 개수를 정해야한다는 단점이 있음.
+- 엘보우(elbow) : 자동으로 클러스터 개수를 찾는 대표적인 방법.
+- 이너셔(inertia) : 클러스터 중심과 클러스터에 속한 샘플 사이의 거리의 제곱 합.
+- 클러스터 개수가 늘어나면 클러스터의 크기는 줄어들어 inertia 값도 줄어듦.
+- 엘보우 방법은 클러스터 개수를 늘려가며 inertia 값의 변화를 관찰해 최적의 클러스터 개수를 찾음.
+- 클러스터 개수에 따라 inertia 값이 감소하는데 감소하는 정도가 줄어드는 부분이 최적의 클러스터 개수.
+
+![k-nearnest](/image/inertia.png)
+
+- scikit-learn에서 from sklearn.cluster import KMeans
 
 <br>
 
@@ -323,85 +195,3 @@
 
 <br>
 
-**앙상블 학습(Ensemble Learning)**
-
-여러 모델을 학습시키고 각 모델의 예측을 취합해 최종 결과를 만드는 머신러닝 알고리즘.
-
-배깅(Bagging) 방법과 부스팅(Boosting) 방법이 있음.
-
-![decision_tree](image/bagging_boosting.png)
-
-<br>
-
-<br>
-
-**배깅(Bagging)**
-
-Bootstrap Aggregation의 약자로 부트스트랩 샘플로 학습시킨 모델의 결과들을 집계(Aggregation)하는 방법.
-
-분류일 경우 투표 방식(Voting)으로 결과를 집계하며 회귀일 경우 평균으로 집계.
-
-병렬 구조로 학습.
-
-![decision_tree](image/bagging.png)
-
-<br>
-
-<br>
-
-**부스팅(Boosting)**
-
-가중치를 활용해 약 분류기(weak classifier)를 강 분류기(strong classifier)로 만드는 방법.
-
-처음 모델의 예측 결과에 따라 가중치가 부여되고 부여된 가중치는 다음 모델에 영향을 줌.
-
-잘못 예측한 데이터에 집중해 큰 가중치를 부여하고 정확히 예측한 데이터에는 작은 가중치를 부여해 잘못 예측한 데이터를 다음 모델에서는 정확하게 예측할 수 있도록 함.
-
-순차적으로 학습.
-
-배깅 방법에 비해 성능이 좋지만 속도가 느리고 과적합 될 가능성이 있음.
-
-![decision_tree](image/boosting.png)
-
-<br>
-
-<br>
-
-**랜덤 포레스트(Random Forest)**
-
-앙상블 학습의 한 종류.
-
-결정 트리를 랜덤으로 만들어 숲을 만들고 각 결정 트리의 예측을 사용해 최종 예측을 만듦.
-
-각 트리를 학습시키기위해 학습 데이터에서 랜덤으로 데이터를 추출함(중복될 수 있음).
-
-부트스트랩 샘플(bootstrap sample) : 랜덤으로 데이터를 추출해 만든 샘플.
-
-OOB 샘플(Out of Bag sample) : 부트스트랩 샘플에 포함되지 못한 샘플.
-
-트리의 노드를 만들때 전체 특성 중 무작위로 일부 특성을 선정해 최선의 분할을 찾음.
-
-분류 모델인 RandomForestClassifier는 특성 개수의 제곱근만큼의 특성을 선택.
-
-회귀 모델인 RandomRorestRegressor는 전체 특성을 사용.
-
-<br>
-<br>
-
-**엑스트라 트리(Extra Tree)**
-
-앙상블 학습의 한 종류.
-
-랜덤 포레스트와 유사하지만 부트스트랩 샘플을 사용하지 않고 전체 학습 데이터셋을 사용한다는 차이가 있음.
-
-트리의 노드를 만들때 최선의 분할을 찾는 것이 아니라 무작위로 분할.
-
-<br>
-
-<br>
-
-**그레디언트 부스팅(Gradient Boosting)**
-
-앙상블 학습의 한 종류.
-
-scikit-learn의 GradientBoostingClassifier는 깊이가 3인 결정 트리를 100개를 사용.
