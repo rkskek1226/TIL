@@ -12,6 +12,14 @@ Dense() : 각 층의 특성을 설정하며 add() 안에서 사용함.
 
 compile() : 모델을 컴파일하는 것으로 손실 함수, 최적화 방법, 메트릭을 지정.
 
+* compile()에서 이진 분류의 경우 손실 함수로 binary_crossentropy를 사용
+
+
+* compile()에서 다중 분류의 경우 원핫 인코딩 적용하면 손실 함수로 categorical_crossentropy를 사용.
+
+
+* compile()에서 다중 분류의 경우 원핫 인코딩 적용안하면 손실 함수로 sparse_categorical_crossentropy를 사용.
+
 fit() : 모델을 실제로 수행하는 것으로 epoch와 batch_size를 지정.
 
 ```python
@@ -163,4 +171,18 @@ model.fit_generator(train_gen, steps_per_epooch= , epochs= , validation_data= , 
 steps_per_epoch : 이미지 생성기에서 몇 개의 샘플을 뽑을지 결정.
 
 validation_steps : validation_data에 전달되는 인자에서 몇 개의 샘플을 뽑을지 결정.
+
+<br>
+
+<br>
+
+**callback**
+
+학습중 특정 작업을 수행할 수 있도록하는 객체.
+
+keras.callbacks 패키지 아래에 있는 클래스로 fit()의 callbacks 매개변수에 리스트로 전달하여 사용.
+
+* ModelCheckpoint 콜백은 에포크마다 모델을 저장하며 save_best_only=True로 매개변수를 지정하면 검증 점수가 가장 높은 모델을 저장.
+* EarlyStopping 콜백은 조기 종료를 위한 콜백으로 patience 매개변수로 점수가 향상되지 않더라도 허용할 에포크 횟수를 지정할 수 있음.
+* EarlyStopping 콜백에서 restore_best_weights=True로 매개변수를 지정하면 검증 점수가 가장 높은 모델의 파라미터로 되돌림.
 
