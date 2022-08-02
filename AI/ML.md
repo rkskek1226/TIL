@@ -48,6 +48,8 @@
 
 **강화 학습**
 
+* 자신의 행동에 대한 보상을 받으며 학습을 진행.
+
 - 마르코프 결정 과정
 
 <br>
@@ -91,6 +93,8 @@
 2. True Negative : 모델이 0으로 예측을 하고 실제 값도 0인 경우.
 3. False Positive : 모델이 1로 예측을 하고 실제 값이 0인 경우, Type 1 오류라고도 함.
 4. False Negative : 모델이 0으로 예측을 하고 실제 값이 1인 경우, Type 2 오류라고도 함.
+
+#### 정확도 = $True Positive + True Negative\over True Positive + True Negative + False Positive + Fals Negative$
 
 <br>
 

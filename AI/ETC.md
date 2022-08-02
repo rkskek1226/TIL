@@ -121,28 +121,7 @@ Tensorflow 2.6 버젼 이상부터 predict_classes()는 오류 발생
 
 **ImageDataGenerator()**
 
-주어진 데이터를 이용해 변형된 이미지를 만들어 데이터의 수를 늘려주는 함수.
-
-```python
-train_datagen = ImageDataGenerator(rescale= , horizontal_flip= , width_shift_range= , height_shift_range= , 
-                             rotation_range= , shear_range= , zoom_range= , vertical_flip= , fill_mode= )
-```
-
-rescale : 크기 변경(rescale=1./255하면 RGB값들을 255로 나누어 0에서 1의 값으로 변경됨).
-
-horizontal_flip, vertical_flip : 수평이나 수직으로 뒤집음(horizontal_flip=True, vertical_flip=False).
-
-zoom_range = 정해진 범위에서 축소, 확대시킴(zoom_range=0.1).
-
-width_shift_range, height_shift_range : 정해진 범위에서 수평, 수직으로 랜덤하게 평행 이동시킴(width_shift_range=0.1, height_shift_range=0.1).
-
-rotation_range : 정해진 각도만큼 이미지를 회전시킴(rotation_range=5).
-
-shear_range : 좌표 하나를 고정시키고 다른 좌표를 이동시키는 변환을 수행(shear_range=0.5).
-
-fill_mode : 이미지를 축소, 회전, 이동할때 생기는 빈 공간을 어떻게 채울지 결정(fill_mode="nearest"하면 가장 비슷한 색으로 채움)
-
-테스트 데이터에는 rescale만 적용시킴.
+이미지 전처리 및 증강 함수.
 
 <br>
 
@@ -151,26 +130,6 @@ fill_mode : 이미지를 축소, 회전, 이동할때 생기는 빈 공간을 �
 **flow_from_directory()**
 
 폴더에 저장된 데이터를 불러오는 함수.
-
-```python
-train_gen = train_datagen.flow_from_directory("경로", target_size=( , ), batch_szie= , class_mode=" ")
-```
-
-target_size : 이미지 크기.
-
-class_mode : 이진 분류면 binary.
-
-컴파일 후 실행시킬때 fit()이 아닌 fit_generator()을 사용.
-
-```python
-model.fit_generator(train_gen, steps_per_epooch= , epochs= , validation_data= , validation_steps= )
-```
-
-첫 인자는 이미지 생성기로 설정.
-
-steps_per_epoch : 이미지 생성기에서 몇 개의 샘플을 뽑을지 결정.
-
-validation_steps : validation_data에 전달되는 인자에서 몇 개의 샘플을 뽑을지 결정.
 
 <br>
 
