@@ -61,7 +61,13 @@
 
 <br>
 
-**특성 추출(feature extractor)**
+**특성 추출 기법(feature extractor)**
 
-* 사전 훈련된 모델(pre-trained model)을 가져와 마지막의 완전 연결층만 새로 만드는 방식.
+* 사전 학습된 모델(pre-trained model)을 가져와 마지막의 완전 연결층만 새로 만드는 방식.
 * 완전 연결층만 학습을 진행.
+
+<br>
+
+**미세 조정 기법(fine-tunning)**
+
+* 특성 추출 기법에서 나아가 사전 학습된 모델(pre-trained model)을 목적에 맞춰 재학습시키거나 학습된 가중치를 재학습 시키는 방식.
