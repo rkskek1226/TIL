@@ -53,7 +53,7 @@ model.fit(X, Y, epochs=200, batch_size=10)
 
 <br>
 
-문자 데이터를 숫자로 변환하고 원핫 인코딩 사용하는 방법.
+**원핫 인코딩(문자 데이터를 숫자 형으로 변환)**
 
 ```python
 from sklearn.preprocessing import LabelEncode
@@ -71,6 +71,15 @@ Y_encoded=np_utils.to_categorical(Y)
 0과 1로만 구성되어 True를 표현하는 1개의 1과 False를 표현하는 여러개의 0으로 구성된 숫자로 변환됨.
 
 <br>
+
+**원핫 인코딩**
+
+```python
+1. tf.keras.utils.to_categorical(y, num_classes=None, dtype="float32")
+2. tf.one_hot(indices, depth, on_value=None, off_value=None, axis=None, dtype=None, name=None)
+```
+
+
 
 과적합(over fitting)
 
