@@ -109,6 +109,15 @@ print(result)
 print(dict(zip(model.metrics_names, result)))
 
 
+# 클래스 가중치
+# model.fit()에서 class_weight 옵션의 값으로 딕셔너리를 설정해 사용
+# 5번 클래스에 더 많은 중요성을 두도록 클래스의 가중치를 설정
+class_weight = {
+    0: 1.0, 1: 1.0, 2: 1.0, 3: 1.0, 4: 1.0, 5: 2.0, 6: 1.0, 7: 1.0, 8: 1.0, 9: 1.0
+}
+
+model = get_compiled_model()
+model.fit(train_x, train_y, class_weight=class_weight, batch_size=64, epochs=1)
 
 
 

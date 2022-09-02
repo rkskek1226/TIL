@@ -62,7 +62,18 @@ print(tf.RaggedTensor.from_sparse(st))   # 형 변환
 print()
 
 rt = tf.ragged.constant([[1, 2], [3, 4, 5], [6], [], [7]])
-print(rt.to_list())   # 형 변환
+rt = rt.to_list()   # 파이썬 리스트로 형 변환
+print(rt)
+print(rt[1])
+print()
+
+# 브로드캐스팅
+x = tf.ragged.constant([[1, 2], [3]])   # 2 x (nun_rows)
+y = 3
+print(x + y)   # 2 x (num_rows)
+x = tf.ragged.constant([[10, 87, 12], [19, 53], [12, 32]])   # 3 x (num_rows)
+y = [[1000], [2000], [3000]]   # 3 x 1
+print(x + y)   # 3 x (num_rows)
 
 
 
