@@ -7,11 +7,11 @@ rank_0_tensor = tf.constant(4)   # 스칼라(rank-0)
 print(rank_0_tensor)
 print()
 
-rank_1_tensor = tf.constant([2.0, 3.0, 4.0])   # 벡터(rank-2)
+rank_1_tensor = tf.constant([2.0, 3.0, 4.0])   # 벡터(rank-1)
 print(rank_1_tensor)
 print()
 
-rank_3_tensor1 = tf.constant([[1, 2], [3, 4], [5, 6]], dtype=tf.float16)   # 행렬(rank-3)
+rank_3_tensor1 = tf.constant([[1, 2], [3, 4], [5, 6]], dtype=tf.float16)   # 행렬(rank-2)
 print(rank_3_tensor1)
 print()
 
