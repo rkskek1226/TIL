@@ -27,7 +27,7 @@ print()
 st_c = tf.SparseTensor(indices=[[0, 1], [1, 0], [1, 1]], values=[13, 15, 17], dense_shape=[2, 2])
 print(tf.sparse.to_dense(st_c))
 tmp = tf.constant([[4], [6]])
-print(tf.sparse.sparse_dense_matmul(st_c, tmp))
+print(tf.sparse.sparse_dense_matmul(st_c, tmp))   # 행렬 곱
 print()
 
 sp_1 = tf.SparseTensor(indices=[[2, 4], [3, 3], [3, 4], [4, 3], [4, 4], [5, 4]], values=[1, 1, 1, 1, 1, 1], dense_shape=[8, 5])
