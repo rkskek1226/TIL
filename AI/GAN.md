@@ -8,7 +8,9 @@ $$z = f(x$$)를 모델링하는 방법을 배우는 역할.
 
 일반적으로 잠재 벡터의 차원은 입력 데이터의 차원보다 작음.
 
-<br>
+
+
+
 
 **디코더(Decoder)**
 
@@ -16,7 +18,7 @@ $$z = f(x$$)를 모델링하는 방법을 배우는 역할.
 
 $$\hat{x} = g(z)$$ 
 
-<br>
+
 
 **오토인코더(AutoEncoder)**
 
@@ -30,7 +32,9 @@ VAE : 오토인코더를 생성 모델로 일반화하는 한가지 방법.
 
 ![k-nearnest](/image/ae.png)
 
-<br>
+
+
+
 
 **GAN(Generative Adversarial Network)**
 
