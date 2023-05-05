@@ -55,7 +55,7 @@
 
 * 과정 5 : 출력층의 입력이 되는 $\tilde{s_t}$를 사용
 * 1. 출력층의 입력이 되는 $\tilde{s_t} = tanh(W_c[a^t;s_t] + b_c)$
-  2. 출력층의 출력이 되는 $\hat{y_t} = Softmax(W_y\tilde s_t + b_y)
+  2. 출력층의 출력이 되는 $\hat{y_t} = Softmax(W_y\tilde s_t + b_y)$
 
 
 
@@ -109,4 +109,5 @@
   3. 어텐션 스코어 행렬에서 현재 시점보다 미래에 있는 단어들을 참고하지 못하도록 음수값을 넣음
 * Multi-head Attention
 * 1. Key와 Value를 인코더의 마지막 층에서 받고 Query는 디코더의 첫번째 서브 레이층의 결과로 받음
+
 
